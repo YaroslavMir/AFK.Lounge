@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>AFK Lounge — Киберспорт в бизнес-классе</title>
-
+    
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
@@ -19,6 +18,7 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/108262174" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 
+    <title>AFK Lounge — Киберспорт в бизнес-классе</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -114,6 +114,24 @@
         /* FAQ аккордеон */
         details summary::-webkit-details-marker { display:none; }
         details summary { list-style: none; }
+
+        /* Модальное окно стили */
+        #modal-overlay {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        #modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
     </style>
 </head>
 <body class="selection:bg-primary/30 selection:text-primary antialiased">
@@ -144,7 +162,7 @@
                 <a class="text-secondary hover:text-primary transition-colors duration-300" href="#faq">FAQ</a>
                 <a class="text-secondary hover:text-primary transition-colors duration-300" href="#contacts">Контакты</a>
             </div>
-            <button class="copper-gradient text-on-primary font-bold px-6 py-2.5 rounded-xl hover:scale-105 transition-all duration-300 shadow-midnight text-sm tracking-wide">
+            <button onclick="openModal()" class="copper-gradient text-on-primary font-bold px-6 py-2.5 rounded-xl hover:scale-105 transition-all duration-300 shadow-midnight text-sm tracking-wide">
                 Забронировать
             </button>
         </div>
@@ -155,9 +173,7 @@
         <section class="relative min-h-screen flex items-center justify-start pt-20 overflow-hidden">
             <div class="absolute inset-0 z-0">
                 <img class="w-full h-full object-cover" alt="Интерьер AFK Lounge" src="posadka.jpg"/>
-                <!-- Облегченное затемнение -->
                 <div class="absolute inset-0 bg-surface/40 backdrop-brightness-75"></div>
-                <!-- Мягкий градиент слева для читаемости текста -->
                 <div class="absolute inset-0 bg-gradient-to-r from-surface/80 via-surface/20 to-transparent"></div>
                 <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface/80"></div>
             </div>
@@ -166,7 +182,7 @@
                 <span class="inline-block px-5 py-2 mb-8 rounded-full border border-primary/40 text-primary text-sm font-semibold tracking-wide bg-primary/10 backdrop-blur-md">
                     Эксклюзивно для новых резидентов
                 </span>
-                <h1 class="text-5xl md:text-7xl lg:text-[5rem] font-extrabold leading-[1.05] mb-8 tracking-tighter text-glow text-on-surface text-left text-balance">
+                <h1 class="text-5xl md:text-7xl lg:text-[5rem] font-extrabold leading-[1.05] mb-8 tracking-tighter text-glow text-on-surface text-left text-balance uppercase">
                     AFK Lounge — <br/>
                     <span class="text-copper-gradient">Киберспорт</span> в бизнес-классе
                 </h1>
@@ -174,7 +190,7 @@
                     <span class="fact-number">100%</span> звукоизоляция в каждом буткемпе, топовое железо и ресторанный сервис для вашего идеального отдыха.
                 </p>
                 <div class="flex flex-col items-start gap-3">
-                    <button class="copper-gradient text-on-primary font-bold px-10 py-5 rounded-xl hover:scale-105 transition-all shadow-glow text-lg w-full sm:w-auto text-center">
+                    <button onclick="openModal()" class="copper-gradient text-on-primary font-bold px-10 py-5 rounded-xl hover:scale-105 transition-all shadow-glow text-lg w-full sm:w-auto text-center">
                         Зарегистрироваться и забрать бонус
                     </button>
                     <p class="text-xs text-gray-400 font-medium tracking-wide">
@@ -187,21 +203,21 @@
         <!-- Блок 2: Новый стандарт игрового отдыха -->
         <section class="py-28 bg-surface-container-low">
             <div class="max-w-[1440px] mx-auto px-8">
-                <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center tracking-tighter text-on-surface">
+                <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center tracking-tighter text-on-surface uppercase">
                     Новый стандарт игрового отдыха
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-surface py-8 px-6 md:py-10 md:px-8 rounded-2xl hover:-translate-y-2 hover:shadow-midnight transition-all duration-300 border border-white/5 flex flex-col items-start text-left">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                    <div class="bg-surface py-8 px-6 md:py-10 md:px-8 rounded-2xl hover:-translate-y-2 hover:shadow-midnight transition-all duration-300 border border-white/5 flex flex-col items-start">
                         <span class="material-symbols-outlined text-5xl text-primary mb-6">room_service</span>
                         <h3 class="text-white text-lg md:text-xl font-bold mb-4 leading-tight text-balance">Премиальная приватность и заказ ужина прямо к монитору</h3>
                         <p class="text-secondary text-sm md:text-base leading-relaxed">Мы заменили шум общих залов на звукоизолированные буткемпы, а ожидание у стойки админа — на мгновенную бронь через приложение. Наслаждайтесь игрой в идеальном микроклимате, пока мы подаем горячую еду прямо к вашему ПК.</p>
                     </div>
-                    <div class="bg-surface py-8 px-6 md:py-10 md:px-8 rounded-2xl hover:-translate-y-2 hover:shadow-midnight transition-all duration-300 border border-white/5 flex flex-col items-start text-left">
+                    <div class="bg-surface py-8 px-6 md:py-10 md:px-8 rounded-2xl hover:-translate-y-2 hover:shadow-midnight transition-all duration-300 border border-white/5 flex flex-col items-start">
                         <span class="material-symbols-outlined text-5xl text-primary mb-6">qr_code_scanner</span>
                         <h3 class="text-white text-lg md:text-xl font-bold mb-4 leading-tight text-balance">Как начать идеальный вечер без очередей и суеты?</h3>
                         <p class="text-secondary text-sm md:text-base leading-relaxed">Ваш отдых начинается в один клик. Забронируйте место по пути с работы, приложите QR-код на входе и садитесь в эргономичное кресло. Вас ждет увеличенное расстояние между ПК и профессиональная вытяжка — полное погружение без внешних раздражителей.</p>
                     </div>
-                    <div class="bg-surface py-8 px-6 md:py-10 md:px-8 rounded-2xl hover:-translate-y-2 hover:shadow-midnight transition-all duration-300 border border-white/5 flex flex-col items-start text-left">
+                    <div class="bg-surface py-8 px-6 md:py-10 md:px-8 rounded-2xl hover:-translate-y-2 hover:shadow-midnight transition-all duration-300 border border-white/5 flex flex-col items-start">
                         <span class="material-symbols-outlined text-5xl text-primary mb-6">workspace_premium</span>
                         <h3 class="text-white text-lg md:text-xl font-bold mb-4 leading-tight text-balance">Почему в обычных клубах невозможно по-настоящему отдохнуть?</h3>
                         <p class="text-secondary text-sm md:text-base leading-relaxed">Мы переосмыслили идею гейминга и убрали всё лишнее: шумных подростков, духоту и посредственную еду. AFK Lounge — это закрытый киберлаунж, где топовое железо служит лишь фоном для вашего персонального комфорта и статусных побед.</p>
@@ -213,50 +229,47 @@
         <!-- Блок: Самоидентификация -->
         <section class="py-28 bg-surface">
             <div class="max-w-6xl mx-auto px-8">
-                <h2 class="text-3xl md:text-4xl font-bold mb-20 text-center tracking-tighter text-on-surface">
+                <h2 class="text-3xl md:text-4xl font-bold mb-20 text-center tracking-tighter text-on-surface uppercase">
                     Для кого создано пространство AFK Lounge
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
-                    <div class="flex flex-col items-start text-left">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16 text-left">
+                    <div class="flex flex-col items-start">
                         <span class="material-symbols-outlined text-5xl text-primary mb-6">business_center</span>
-                        <h3 class="text-white text-xl font-bold mb-4">Для перезагрузки после работы</h3>
+                        <h3 class="text-white text-xl font-bold mb-4 text-balance">Для перезагрузки после работы</h3>
                         <p class="text-secondary text-base leading-relaxed">Тем, кто хочет выдохнуть после сложного рабочего дня. Вы получите удобное кожаное кресло и абсолютную тишину, чтобы мгновенно переключиться с рабочих задач на отдых.</p>
                     </div>
-                    <div class="flex flex-col items-start text-left">
+                    <div class="flex flex-col items-start">
                         <span class="material-symbols-outlined text-5xl text-primary mb-6">groups</span>
-                        <h3 class="text-white text-xl font-bold mb-4">Для сплоченных команд</h3>
+                        <h3 class="text-white text-xl font-bold mb-4 text-balance">Для сплоченных команд</h3>
                         <p class="text-secondary text-base leading-relaxed">Друзьям и сквадам, которым важно приватное место. Вы сможете обсуждать тактику, общаться и эмоционировать без лишних ушей и криков из общего зала.</p>
                     </div>
-                    <div class="flex flex-col items-start text-left">
+                    <div class="flex flex-col items-start">
                         <span class="material-symbols-outlined text-5xl text-primary mb-6">memory</span>
-                        <h3 class="text-white text-xl font-bold mb-4">Для IT-профи и киберспортсменов</h3>
+                        <h3 class="text-white text-xl font-bold mb-4 text-balance">Для IT-профи и киберспортсменов</h3>
                         <p class="text-secondary text-base leading-relaxed">Тем, кто не терпит компромиссов в технике. Для вас установлены станции на базе RTX 4090 и мониторы 360 Гц, чтобы реализовывать свой скилл на все 100% без единого лага.</p>
                     </div>
-                    <div class="flex flex-col items-start text-left">
+                    <div class="flex flex-col items-start">
                         <span class="material-symbols-outlined text-5xl text-primary mb-6">restaurant</span>
-                        <h3 class="text-white text-xl font-bold mb-4">Для ценителей гастрономии</h3>
+                        <h3 class="text-white text-xl font-bold mb-4 text-balance">Для ценителей гастрономии</h3>
                         <p class="text-secondary text-base leading-relaxed">Тем, кто не готов соглашаться на сухой фастфуд. Вы сможете заказывать горячие блюда и авторские бургеры ресторанного уровня прямо к вашему игровому месту.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Блок 3: Что вы получите (Фон: eat.jpg с облегченным затемнением) -->
+        <!-- Блок 3: Что вы получите (Фон: eat.jpg) -->
         <section class="relative py-32 overflow-hidden">
             <div class="absolute inset-0 z-0">
                 <img class="w-full h-full object-cover" alt="Гастрономия и сервис" src="eat.jpg"/>
-                <!-- Облегченное затемнение (аналогично Hero) -->
-                <div class="absolute inset-0 bg-surface/40 backdrop-brightness-75"></div>
-                <!-- Градиенты для читаемости и бесшовного перехода -->
-                <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-surface"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-surface/80 via-transparent to-surface/80"></div>
+                <div class="absolute inset-0 bg-surface/75 backdrop-brightness-50"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
             </div>
 
             <div class="relative z-10 max-w-7xl mx-auto px-8">
-                <h2 class="text-3xl md:text-4xl font-bold mb-16 tracking-tighter text-on-surface text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-16 tracking-tighter text-on-surface text-center uppercase">
                     Что вы получите, став нашим гостем?
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 mb-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 mb-12 text-left">
                     <div class="flex items-start gap-6 group">
                         <div class="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center shrink-0 border border-primary/30 backdrop-blur-sm transition-all duration-300 group-hover:bg-primary/30">
                             <span class="material-symbols-outlined text-primary text-3xl">air</span>
@@ -294,12 +307,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full flex items-center gap-6 p-8 md:p-10 bg-primary/10 rounded-3xl border border-primary/30 backdrop-blur-md hover:bg-primary/20 transition-colors duration-300 shadow-glow">
+                <div class="w-full flex items-center gap-6 p-8 md:p-10 bg-primary/10 rounded-3xl border border-primary/30 backdrop-blur-md hover:bg-primary/20 transition-colors duration-300 shadow-glow cursor-pointer" onclick="openModal()">
                     <div class="w-20 h-20 bg-primary/20 rounded-2xl flex items-center justify-center shrink-0">
                         <span class="material-symbols-outlined text-primary text-4xl filled">verified</span>
                     </div>
-                    <div class="flex flex-col">
-                        <h4 class="text-2xl font-bold mb-2 text-on-surface">Гарантия качества</h4>
+                    <div class="flex flex-col text-left">
+                        <h4 class="text-2xl font-bold mb-2 text-on-surface text-balance">Гарантия качества</h4>
                         <p class="text-secondary text-base md:text-lg">Вернем полную стоимость первого часа, если вам помешает шум или возникнут технические проблемы.</p>
                     </div>
                 </div>
@@ -308,9 +321,9 @@
 
         <!-- Блок 5: Тарифы -->
         <section id="pricing" class="py-28 bg-surface-container-low">
-            <div class="max-w-[1440px] mx-auto px-8">
+            <div class="max-w-[1440px] mx-auto px-8 text-left">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tighter text-on-surface">Выберите свой сценарий отдыха</h2>
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tighter text-on-surface uppercase">Выберите свой сценарий отдыха</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-stretch">
                     <div class="bg-surface py-10 px-8 rounded-3xl border border-white/5 flex flex-col h-full hover:shadow-midnight transition-all duration-300">
@@ -322,7 +335,7 @@
                             <li class="text-secondary text-sm flex items-start gap-3"><span class="text-primary font-bold">•</span> Увеличенное расстояние между столами</li>
                             <li class="text-secondary text-sm flex items-start gap-3"><span class="text-primary font-bold">•</span> Премиальная периферия и девайсы</li>
                         </ul>
-                        <button class="w-full py-4 rounded-xl border border-primary/30 text-primary font-bold hover:bg-primary/10 transition-all text-sm uppercase tracking-widest">Забронировать</button>
+                        <button onclick="openModal()" class="w-full py-4 rounded-xl border border-primary/30 text-primary font-bold hover:bg-primary/10 transition-all text-sm uppercase tracking-widest text-center">Забронировать</button>
                     </div>
                     <div class="bg-surface-container-high py-10 px-8 rounded-3xl border-2 border-primary relative flex flex-col h-full shadow-glow transform md:-translate-y-4 scale-105 z-10">
                         <div class="absolute -top-4 left-1/2 -translate-x-1/2 copper-gradient px-5 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase text-white shadow-lg">Рекомендуем</div>
@@ -334,7 +347,7 @@
                             <li class="text-on-surface text-sm font-medium flex items-start gap-3"><span class="text-primary font-bold">•</span> 3 часа игры в любой зоне</li>
                             <li class="text-on-surface text-sm font-medium flex items-start gap-3"><span class="text-primary font-bold">•</span> Любой бургер из меню в подарок</li>
                         </ul>
-                        <button class="w-full py-4 rounded-xl copper-gradient text-on-primary font-bold hover:scale-[1.02] transition-transform text-sm uppercase tracking-widest shadow-midnight">Забронировать</button>
+                        <button onclick="openModal()" class="w-full py-4 rounded-xl copper-gradient text-on-primary font-bold hover:scale-[1.02] transition-transform text-sm uppercase tracking-widest shadow-midnight text-center">Забронировать</button>
                     </div>
                     <div class="bg-surface py-10 px-8 rounded-3xl border border-white/5 flex flex-col h-full hover:shadow-midnight transition-all duration-300">
                         <div class="mb-6"><span class="material-symbols-outlined text-primary text-4xl">nights_stay</span></div>
@@ -345,7 +358,7 @@
                             <li class="text-secondary text-sm flex items-start gap-3"><span class="text-primary font-bold">•</span> Эргономичные кресла для марафонов</li>
                             <li class="text-secondary text-sm flex items-start gap-3"><span class="text-primary font-bold">•</span> Безлимитный кофе для восстановления сил</li>
                         </ul>
-                        <button class="w-full py-4 rounded-xl border border-primary/30 text-primary font-bold hover:bg-primary/10 transition-all text-sm uppercase tracking-widest">Забронировать</button>
+                        <button onclick="openModal()" class="w-full py-4 rounded-xl border border-primary/30 text-primary font-bold hover:bg-primary/10 transition-all text-sm uppercase tracking-widest text-center">Забронировать</button>
                     </div>
                     <div class="bg-surface py-10 px-8 rounded-3xl border border-white/5 flex flex-col h-full hover:shadow-midnight transition-all duration-300">
                         <div class="mb-6"><span class="material-symbols-outlined text-primary text-4xl">card_membership</span></div>
@@ -356,7 +369,7 @@
                             <li class="text-secondary text-sm flex items-start gap-3"><span class="text-primary font-bold">•</span> Приоритетное бронирование VIP-залов</li>
                             <li class="text-secondary text-sm flex items-start gap-3"><span class="text-primary font-bold">•</span> Кэшбэк 10% на всё меню кухни</li>
                         </ul>
-                        <button class="w-full py-4 rounded-xl border border-primary/30 text-primary font-bold hover:bg-primary/10 transition-all text-sm uppercase tracking-widest">Забронировать</button>
+                        <button onclick="openModal()" class="w-full py-4 rounded-xl border border-primary/30 text-primary font-bold hover:bg-primary/10 transition-all text-sm uppercase tracking-widest text-center">Забронировать</button>
                     </div>
                 </div>
             </div>
@@ -369,8 +382,8 @@
                     <div class="lg:w-1/2 w-full h-[300px] md:h-[450px] overflow-hidden rounded-3xl shadow-midnight">
                         <img class="w-full h-full object-cover" alt="Командный буткемп" src="team.jpg"/>
                     </div>
-                    <div class="lg:w-1/2 w-full flex flex-col items-start">
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-tight text-on-surface text-balance">
+                    <div class="lg:w-1/2 w-full flex flex-col items-start text-left">
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-tight text-on-surface text-balance uppercase">
                             Звукоизолированный буткемп <br/>для команд <span class="text-primary font-bold">(на 5 персон)</span>
                         </h3>
                         <ul class="space-y-5 mb-10">
@@ -383,7 +396,7 @@
                             <span class="text-4xl md:text-5xl font-black text-on-surface">1200 руб/час</span>
                             <span class="text-gray-500 line-through text-lg">1800 руб</span>
                         </div>
-                        <button class="w-full md:w-auto px-10 py-5 rounded-xl border-2 border-primary/40 text-on-surface font-bold hover:bg-primary/10 hover:border-primary transition-all duration-300 text-base">Оставьте заявку на бесплатный тест-драйв!</button>
+                        <button onclick="openModal()" class="w-full md:w-auto px-10 py-5 rounded-xl border-2 border-primary/40 text-on-surface font-bold hover:bg-primary/10 hover:border-primary transition-all duration-300 text-base">Оставьте заявку на бесплатный тест-драйв!</button>
                     </div>
                 </div>
             </div>
@@ -392,24 +405,24 @@
         <!-- Блок 6: Гарантия -->
         <section class="py-28 bg-surface-container-low">
             <div class="max-w-6xl mx-auto px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-tighter text-on-surface text-balance">Гарантия безупречного отдыха <br class="hidden md:block"> или <span class="text-primary">100% возврат</span></h2>
+                <div class="text-center mb-16 text-left md:text-center">
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-tighter text-on-surface text-balance uppercase">Гарантия безупречного отдыха <br class="hidden md:block"> или <span class="text-primary">100% возврат</span></h2>
                     <p class="text-secondary text-lg md:text-xl max-w-3xl mx-auto font-medium">Мы понимаем, что ваше время — это самый ценный ресурс. Поэтому в AFK Lounge действует правило <span class="text-white font-bold">«Нулевого риска»</span>.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-left">
                     <div class="bg-surface p-8 rounded-3xl border border-white/5 flex flex-col items-start hover:shadow-midnight transition-all duration-300 group">
                         <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 transition-all group-hover:bg-primary group-hover:text-white"><span class="material-symbols-outlined text-primary group-hover:text-white text-3xl">terminal</span></div>
-                        <h4 class="text-white font-bold text-lg mb-4 text-balance">Техническая гарантия</h4>
+                        <h4 class="text-white font-bold text-lg mb-4 text-balance uppercase">Техническая гарантия</h4>
                         <p class="text-secondary text-sm leading-relaxed">Если в течение первых <span class="text-white font-bold">15 минут</span> игры вас не устроит работа железа, пинг или отклик девайсов — мы моментально пересадим вас в VIP-зону с повышением класса или вернем полную стоимость сессии.</p>
                     </div>
                     <div class="bg-surface p-8 rounded-3xl border border-white/5 flex flex-col items-start hover:shadow-midnight transition-all duration-300 group">
                         <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 transition-all group-hover:bg-primary group-hover:text-white"><span class="material-symbols-outlined text-primary group-hover:text-white text-3xl">chair</span></div>
-                        <h4 class="text-white font-bold text-lg mb-4 text-balance">Гарантия комфорта</h4>
+                        <h4 class="text-white font-bold text-lg mb-4 text-balance uppercase">Гарантия комфорта</h4>
                         <p class="text-secondary text-sm leading-relaxed">Если в зале будет шумно, душно или администратор не принесет ваш заказ вовремя — мы начислим <span class="text-white font-bold">100% оплаченной суммы</span> бонусами на ваш следующий визит.</p>
                     </div>
                     <div class="bg-surface p-8 rounded-3xl border border-white/5 flex flex-col items-start hover:shadow-midnight transition-all duration-300 group">
                         <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 transition-all group-hover:bg-primary group-hover:text-white"><span class="material-symbols-outlined text-primary group-hover:text-white text-3xl">restaurant</span></div>
-                        <h4 class="text-white font-bold text-lg mb-4 text-balance">Гарантия вкуса</h4>
+                        <h4 class="text-white font-bold text-lg mb-4 text-balance uppercase">Гарантия вкуса</h4>
                         <p class="text-secondary text-sm leading-relaxed">Не понравился бургер или напиток? Мы заменим блюдо на любое другое из меню или вычтем его из вашего чека. <span class="text-white font-bold">Без лишних вопросов.</span></p>
                     </div>
                 </div>
@@ -422,39 +435,52 @@
 
         <!-- Блок 7: Отзывы -->
         <section class="py-28 bg-surface">
-            <div class="max-w-4xl mx-auto px-8 relative">
-                <h2 class="text-3xl md:text-5xl font-black mb-16 text-center tracking-tighter text-on-surface uppercase">Отзывы</h2>
+            <div class="max-w-4xl mx-auto px-8 relative text-left">
+                <h2 class="text-3xl md:text-5xl font-black mb-16 text-center tracking-tighter text-on-surface uppercase md:text-center">Отзывы</h2>
                 <div class="relative min-h-[400px] flex items-center">
+                    
+                    <!-- Александр -->
                     <div class="testimonial-card active bg-surface-container-low p-10 md:p-16 rounded-[2.5rem] shadow-midnight border border-white/5 w-full">
-                        <p class="text-secondary text-lg md:text-xl leading-relaxed italic mb-10">«Искал место, где можно спокойно поиграть пару часов после офиса без криков школьников над ухом. В AFK Lounge зацепила зона VIP, реально тихо, столы на приличном расстоянии друг от друга, никто локтями не толкает. Порадовало, что еду приносят прямо к компу, и это нормальный горячий ужин, а не чипсы. Впервые за долгое время реально отдохнул». </p>
+                        <p class="text-secondary text-lg md:text-xl leading-relaxed italic mb-10">«Искал место, где можно спокойно поиграть пару часов после офиса без криков школьников над ухом. В AFK Lounge зацепила зона VIP, реально тихо, столы на приличном расстоянии друг от друга, никто локтями не толкает. Порадовало, что еду приносят прямо к компу, и это нормальный горячий ужин, а не чипсы. Впервые за долгое время реально отдохнул».</p>
                         <div class="flex items-center gap-6">
-                            <div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center shrink-0 text-primary font-black text-2xl">А</div>
+                            <div class="w-16 h-16 rounded-2xl overflow-hidden shrink-0 shadow-glow ring-2 ring-primary/20">
+                                <img src="Alexandr.jpg" alt="Александр" class="w-full h-full object-cover">
+                            </div>
                             <div>
                                 <h5 class="font-bold text-on-surface text-xl">Александр</h5>
                                 <span class="text-primary text-sm font-medium uppercase tracking-widest">руководитель отдела продаж</span>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Дмитрий -->
                     <div class="testimonial-card bg-surface-container-low p-10 md:p-16 rounded-[2.5rem] shadow-midnight border border-white/5 w-full">
                         <p class="text-secondary text-lg md:text-xl leading-relaxed italic mb-10">«Бронировали буткемп на пятницу через приложение, заняло меньше минуты. Раньше в других клубах постоянно были проблемы с вентиляцией в кабинках (становилось душно через час), но здесь вытяжка работает на ура, воздух свежий до самого конца сессии. Звукоизоляция топ, соседа из общего зала вообще не слышно. Очень удобно, что чек на компанию можно разделить прямо в приложении при бронировании. Сервис на уровне бизнес-класса».</p>
                         <div class="flex items-center gap-6">
-                            <div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center shrink-0 text-primary font-black text-2xl">Д</div>
+                            <div class="w-16 h-16 rounded-2xl overflow-hidden shrink-0 shadow-glow ring-2 ring-primary/20">
+                                <img src="Dmitriy.jpg" alt="Дмитрий" class="w-full h-full object-cover">
+                            </div>
                             <div>
                                 <h5 class="font-bold text-on-surface text-xl">Дмитрий</h5>
                                 <span class="text-primary text-sm font-medium uppercase tracking-widest">IT-специалист</span>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Максим -->
                     <div class="testimonial-card bg-surface-container-low p-10 md:p-16 rounded-[2.5rem] shadow-midnight border border-white/5 w-full">
                         <p class="text-secondary text-lg md:text-xl leading-relaxed italic mb-10">«Я придирчив к железу. В AFK Lounge зашел проверить 4080 и мониторы 240 Гц. Пинг стабильный, девайсы чистые (никаких липких клавиш), мышки в идеальном состоянии. Видно, что за техникой следят. Отдельный респект за освещение, глаза не устают даже после 4 часов игры. Это первый клуб в Москве, где я не нашел к чему придраться в плане конфигов. Рекомендую тем, кто ценит идеальный отклик».</p>
                         <div class="flex items-center gap-6">
-                            <div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center shrink-0 text-primary font-black text-2xl">М</div>
+                            <div class="w-16 h-16 rounded-2xl overflow-hidden shrink-0 shadow-glow ring-2 ring-primary/20">
+                                <img src="Maxim.jpg" alt="Максим" class="w-full h-full object-cover">
+                            </div>
                             <div>
                                 <h5 class="font-bold text-on-surface text-xl">Максим</h5>
                                 <span class="text-primary text-sm font-medium uppercase tracking-widest">профессиональный аналитик</span>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="flex justify-center gap-6 mt-12">
                     <button onclick="prevTestimonial()" class="w-14 h-14 rounded-2xl border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300"><span class="material-symbols-outlined text-3xl">west</span></button>
@@ -463,10 +489,10 @@
             </div>
         </section>
 
-        <!-- Блок 8: FAQ (Фон: bg-surface-container-lowest) -->
+        <!-- Блок 8: FAQ -->
         <section id="faq" class="py-28 bg-surface-container-lowest">
-            <div class="max-w-4xl mx-auto px-8">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-16 text-center tracking-tighter text-on-surface">Отвечаем на ваши вопросы</h2>
+            <div class="max-w-4xl mx-auto px-8 text-left">
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-16 text-center tracking-tighter text-on-surface uppercase">Отвечаем на ваши вопросы</h2>
                 <div class="space-y-4">
                     <details class="group bg-surface-container-low rounded-2xl border border-white/5 transition-all duration-300 overflow-hidden">
                         <summary class="list-none p-6 md:p-8 flex justify-between items-center cursor-pointer font-bold text-on-surface hover:bg-surface-container transition-colors">
@@ -510,47 +536,44 @@
 
         <!-- Блок 9: Схема работы -->
         <section class="py-28 bg-surface overflow-hidden">
-            <div class="max-w-[1440px] mx-auto px-8 text-center">
-                <h2 class="text-3xl md:text-5xl font-black mb-20 tracking-tighter text-on-surface uppercase">Ваш первый визит: 4 простых шага</h2>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8 relative">
+            <div class="max-w-[1440px] mx-auto px-8 text-center text-left md:text-center">
+                <h2 class="text-3xl md:text-5xl font-black mb-20 tracking-tighter text-on-surface uppercase md:text-center">Ваш первый визит: 4 простых шага</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8 relative text-left">
                     <div class="relative group">
                         <div class="w-24 h-24 mx-auto mb-8 flex items-center justify-center rounded-[2rem] bg-surface-container-high border-2 border-primary/20 text-primary shadow-glow transition-all duration-500 group-hover:scale-110 group-hover:border-primary">
                             <span class="material-symbols-outlined text-5xl">app_shortcut</span>
                         </div>
-                        <div class="absolute -top-4 -right-2 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center font-black text-lg border-4 border-surface z-10">1</div>
-                        <h4 class="font-bold text-xl mb-4 text-on-surface">Бронь в приложении</h4>
-                        <p class="text-secondary text-sm px-4 leading-relaxed text-balance">Не нужно звонить. Выберите зону и конкретное место на карте зала. Бронирование подтверждается моментально.</p>
-                        <div class="hidden md:block absolute top-12 -right-6 w-12 h-[2px] bg-gradient-to-r from-primary to-transparent opacity-30"></div>
+                        <div class="absolute top-0 right-1/4 md:-right-2 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center font-black text-lg border-4 border-surface z-10">1</div>
+                        <h4 class="font-bold text-xl mb-4 text-on-surface text-center md:text-left">Бронь в приложении</h4>
+                        <p class="text-secondary text-sm px-4 md:px-0 leading-relaxed text-balance text-center md:text-left">Не нужно звонить. Выберите зону и конкретное место на карте зала. Бронирование подтверждается моментально.</p>
                     </div>
                     <div class="relative group">
                         <div class="w-24 h-24 mx-auto mb-8 flex items-center justify-center rounded-[2rem] bg-surface-container-high border-2 border-primary/20 text-primary shadow-glow transition-all duration-500 group-hover:scale-110 group-hover:border-primary">
                             <span class="material-symbols-outlined text-5xl">qr_code_2</span>
                         </div>
-                        <div class="absolute -top-4 -right-2 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center font-black text-lg border-4 border-surface z-10">2</div>
-                        <h4 class="font-bold text-xl mb-4 text-on-surface">Вход по QR-коду</h4>
-                        <p class="text-secondary text-sm px-4 leading-relaxed text-balance">Забудьте о ресепшене. Просто отсканируйте ваш QR-код на терминале — система сама разблокирует компьютер.</p>
-                        <div class="hidden md:block absolute top-12 -right-6 w-12 h-[2px] bg-gradient-to-r from-primary to-transparent opacity-30"></div>
+                        <div class="absolute top-0 right-1/4 md:-right-2 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center font-black text-lg border-4 border-surface z-10">2</div>
+                        <h4 class="font-bold text-xl mb-4 text-on-surface text-center md:text-left">Вход по QR-коду</h4>
+                        <p class="text-secondary text-sm px-4 md:px-0 leading-relaxed text-balance text-center md:text-left">Забудьте о ресепшене. Просто отсканируйте ваш QR-код на терминале — система сама разблокирует компьютер.</p>
                     </div>
                     <div class="relative group">
                         <div class="w-24 h-24 mx-auto mb-8 flex items-center justify-center rounded-[2rem] bg-surface-container-high border-2 border-primary/20 text-primary shadow-glow transition-all duration-500 group-hover:scale-110 group-hover:border-primary">
                             <span class="material-symbols-outlined text-5xl">touch_app</span>
                         </div>
-                        <div class="absolute -top-4 -right-2 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center font-black text-lg border-4 border-surface z-10">3</div>
-                        <h4 class="font-bold text-xl mb-4 text-on-surface">Сервис в один клик</h4>
-                        <p class="text-secondary text-sm px-4 leading-relaxed text-balance">Заказывайте еду и напитки через интерфейс управления на ПК. Официант принесет заказ прямо к столу за 15 минут.</p>
-                        <div class="hidden md:block absolute top-12 -right-6 w-12 h-[2px] bg-gradient-to-r from-primary to-transparent opacity-30"></div>
+                        <div class="absolute top-0 right-1/4 md:-right-2 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center font-black text-lg border-4 border-surface z-10">3</div>
+                        <h4 class="font-bold text-xl mb-4 text-on-surface text-center md:text-left">Сервис в один клик</h4>
+                        <p class="text-secondary text-sm px-4 md:px-0 leading-relaxed text-balance text-center md:text-left">Заказывайте еду и напитки через интерфейс управления на ПК. Официант принесет заказ прямо к столу за 15 минут.</p>
                     </div>
-                    <div class="relative group">
+                    <div class="relative group text-center md:text-left">
                         <div class="w-24 h-24 mx-auto mb-8 flex items-center justify-center rounded-[2rem] bg-primary text-on-primary shadow-glow transition-all duration-500 group-hover:scale-110">
                             <span class="material-symbols-outlined text-5xl">payments</span>
                         </div>
-                        <div class="absolute -top-4 -right-2 w-10 h-10 bg-on-surface text-surface rounded-full flex items-center justify-center font-black text-lg border-4 border-surface z-10">4</div>
-                        <h4 class="font-bold text-xl mb-4 text-on-surface text-balance">Расчет и бонусы</h4>
-                        <p class="text-secondary text-sm px-4 leading-relaxed">Завершите сессию одной кнопкой. Сумма спишется автоматически, а на счет вернется <span class="text-primary font-bold">кешбэк 10%</span>.</p>
+                        <div class="absolute top-0 right-1/4 md:-right-2 w-10 h-10 bg-on-surface text-surface rounded-full flex items-center justify-center font-black text-lg border-4 border-surface z-10">4</div>
+                        <h4 class="font-bold text-xl mb-4 text-on-surface text-center md:text-left">Расчет и бонусы</h4>
+                        <p class="text-secondary text-sm px-4 md:px-0 leading-relaxed text-balance text-center md:text-left">Завершите сессию одной кнопкой. Сумма спишется автоматически, а на счет вернется <span class="text-primary font-bold">кешбэк 10%</span>.</p>
                     </div>
                 </div>
                 <div class="mt-20 flex flex-col items-center gap-4">
-                    <button class="copper-gradient text-on-primary font-bold px-12 py-6 rounded-2xl hover:scale-105 transition-all shadow-glow text-xl">Забронировать ПК прямо сейчас</button>
+                    <button onclick="openModal()" class="copper-gradient text-on-primary font-bold px-12 py-6 rounded-2xl hover:scale-105 transition-all shadow-glow text-xl">Забронировать ПК прямо сейчас</button>
                     <p class="text-sm text-secondary font-medium">* Вы получите бонус <span class="text-primary font-bold text-lg">500</span> рублей на первый визит!</p>
                 </div>
             </div>
@@ -559,8 +582,8 @@
 
     <!-- Footer -->
     <footer id="contacts" class="bg-surface-container-lowest py-20 border-t border-surface-container">
-        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div class="space-y-6 text-left">
+        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-16 text-left">
+            <div class="space-y-6">
                 <a href="#" class="flex flex-col items-start gap-4 group inline-block">
                     <svg viewBox="0 0 100 120" class="h-14 w-auto group-hover:scale-105 transition-transform duration-300 drop-shadow-lg" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -581,7 +604,7 @@
                 </a>
                 <p class="text-secondary text-sm mt-4">© 2026 AFK Lounge. Киберспорт в бизнес-классе.</p>
             </div>
-            <div class="space-y-6 text-left">
+            <div class="space-y-6">
                 <h4 class="text-on-surface font-bold uppercase tracking-widest text-xs">Для вас открыты 24/7</h4>
                 <div class="space-y-4 text-secondary text-sm">
                     <p class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-lg">location_on</span> Москва, Пресненская наб., 12</p>
@@ -589,7 +612,7 @@
                     <p class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-lg">send</span> Написать в Telegram</p>
                 </div>
             </div>
-            <div class="space-y-6 text-left">
+            <div class="space-y-6">
                 <h4 class="text-on-surface font-bold uppercase tracking-widest text-xs">Схема проезда</h4>
                 <div class="h-32 bg-surface-container rounded-xl overflow-hidden border border-surface-container-high opacity-80 hover:opacity-100 transition-opacity flex items-center justify-center relative">
                      <span class="material-symbols-outlined text-primary/30 text-5xl absolute">map</span>
@@ -598,6 +621,67 @@
             </div>
         </div>
     </footer>
+
+    <!-- Модальное окно заявки -->
+    <div id="modal-overlay" class="fixed inset-0 z-[100] items-center justify-center bg-black/80 backdrop-blur-md px-4">
+        <div class="modal-content bg-surface-container-high w-full max-w-md rounded-[2.5rem] border border-white/10 shadow-glow relative overflow-hidden">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-secondary hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+            <div id="modal-form-view" class="p-8 md:p-10">
+                <h3 class="text-2xl md:text-3xl font-black text-on-surface mb-2">Оставить заявку</h3>
+                <p class="text-secondary text-sm mb-8">Заполните данные, чтобы забронировать время или получить консультацию.</p>
+                <form onsubmit="handleFormSubmit(event)" class="space-y-6 text-left">
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold uppercase tracking-widest text-primary ml-1">Ваше имя</label>
+                        <input type="text" required placeholder="Как к вам обращаться?" 
+                               class="w-full bg-surface-container-lowest border-b border-white/10 text-on-surface px-4 py-4 rounded-xl focus:outline-none focus:border-primary transition-colors placeholder:text-gray-600">
+                    </div>
+                    <div class="space-y-4">
+                        <label class="text-xs font-bold uppercase tracking-widest text-primary ml-1">Способ связи</label>
+                        <div class="flex p-1 bg-surface-container-lowest rounded-xl">
+                            <button type="button" onclick="switchContact('phone')" id="tab-phone" 
+                                    class="flex-1 py-2 text-xs font-bold rounded-lg transition-all bg-primary text-on-primary">Телефон</button>
+                            <button type="button" onclick="switchContact('tg')" id="tab-tg" 
+                                    class="flex-1 py-2 text-xs font-bold rounded-lg transition-all text-secondary">Telegram</button>
+                        </div>
+                        <div class="relative">
+                            <input type="text" id="contact-input" required placeholder="+7 (___) ___-__-__" 
+                                   class="w-full bg-surface-container-lowest border-b border-white/10 text-on-surface px-4 py-4 rounded-xl focus:outline-none focus:border-primary transition-colors placeholder:text-gray-600">
+                        </div>
+                    </div>
+                    <div class="space-y-4 pt-2">
+                        <label class="flex items-start gap-3 cursor-pointer group">
+                            <input type="checkbox" id="check-data" onchange="validateForm()" 
+                                   class="mt-1 w-5 h-5 rounded border-white/10 bg-surface-container-lowest text-primary focus:ring-0 focus:ring-offset-0">
+                            <span class="text-[10px] md:text-xs text-secondary group-hover:text-on-surface transition-colors leading-relaxed">
+                                Даю согласие на обработку персональных данных.
+                            </span>
+                        </label>
+                        <label class="flex items-start gap-3 cursor-pointer group">
+                            <input type="checkbox" id="check-policy" onchange="validateForm()" 
+                                   class="mt-1 w-5 h-5 rounded border-white/10 bg-surface-container-lowest text-primary focus:ring-0 focus:ring-offset-0">
+                            <span class="text-[10px] md:text-xs text-secondary group-hover:text-on-surface transition-colors leading-relaxed">
+                                Принимаю условия Политики конфиденциальности.
+                            </span>
+                        </label>
+                    </div>
+                    <button type="submit" id="submit-btn" disabled 
+                            class="w-full py-5 rounded-2xl copper-gradient text-on-primary font-black text-lg shadow-glow opacity-50 cursor-not-allowed transition-all active:scale-95 uppercase tracking-widest">
+                        Отправить заявку
+                    </button>
+                </form>
+            </div>
+            <div id="modal-success-view" class="hidden p-12 text-center flex flex-col items-center justify-center min-h-[400px]">
+                <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-8 shadow-glow">
+                    <span class="material-symbols-outlined text-primary text-5xl filled">check_circle</span>
+                </div>
+                <h3 class="text-3xl font-black text-on-surface mb-4 uppercase tracking-tighter">Все супер!</h3>
+                <p class="text-secondary text-lg leading-relaxed">Ваша заявка принята. <br>Мы свяжемся с вами в ближайшее время, чтобы подтвердить детали.</p>
+                <button onclick="closeModal()" class="mt-10 text-primary font-bold hover:underline">Вернуться на сайт</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         let currentIdx = 0;
@@ -614,6 +698,59 @@
             currentIdx = (currentIdx - 1 + cards.length) % cards.length;
             showTestimonial(currentIdx);
         }
+
+        const modal = document.getElementById('modal-overlay');
+        const formView = document.getElementById('modal-form-view');
+        const successView = document.getElementById('modal-success-view');
+        const contactInput = document.getElementById('contact-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const checkData = document.getElementById('check-data');
+        const checkPolicy = document.getElementById('check-policy');
+
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            formView.classList.remove('hidden');
+            successView.classList.add('hidden');
+        }
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function switchContact(type) {
+            const tabPhone = document.getElementById('tab-phone');
+            const tabTg = document.getElementById('tab-tg');
+            if (type === 'phone') {
+                tabPhone.classList.add('bg-primary', 'text-on-primary');
+                tabPhone.classList.remove('text-secondary');
+                tabTg.classList.remove('bg-primary', 'text-on-primary');
+                tabTg.classList.add('text-secondary');
+                contactInput.placeholder = '+7 (___) ___-__-__';
+            } else {
+                tabTg.classList.add('bg-primary', 'text-on-primary');
+                tabTg.classList.remove('text-secondary');
+                tabPhone.classList.remove('bg-primary', 'text-on-primary');
+                tabPhone.classList.add('text-secondary');
+                contactInput.placeholder = '@username';
+            }
+        }
+        function validateForm() {
+            if (checkData.checked && checkPolicy.checked) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        }
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            formView.classList.add('hidden');
+            successView.classList.remove('hidden');
+        }
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
     </script>
 
 </body>
